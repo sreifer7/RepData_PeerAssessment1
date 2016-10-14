@@ -2,11 +2,14 @@
 title: "PA1_template.Rmd"
 author: "Sammy Q R."
 date: "October 8, 2016"
-output: html_document
+output: 
+  html_document: 
+    keep_md: yes
 ---
+
 **Loading and Preprocessing the Data**
 
-```{r}
+```{r, echo=TRUE}
 stepsData <- read.csv("activity.csv")
 
 stepsData$date <- as.Date(as.character(stepsData$date), format = "%Y-%m-%d") ##turn into date col into date class
@@ -45,7 +48,7 @@ sumIntervalDF <- as.data.frame(summarise(sumIntervalSteps, meanSteps = mean(step
   ## make a df that has average steps per interval 
 ```
 
-```{r, cache=TRUE}
+```{r, echo=TRUE, cache=TRUE}
 plot(sumIntervalDF$interval, sumIntervalDF$meanSteps, type="l", ylab = "Average Steps", xlab="Interval")
   ## time series plot 
 ```
