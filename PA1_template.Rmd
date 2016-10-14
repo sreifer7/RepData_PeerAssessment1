@@ -22,7 +22,7 @@ sumStepsData <- as.data.frame(summarise(day, steps = sum(steps))) ## turn summar
 ```
 
 2. Make a histogram of the amount of steps taken each day 
-```{r, echo=TRUE}
+```{r, echo=TRUE, cache=TRUE}
 hist(sumStepsData$steps, main = "Total Steps per Day", xlab = "Steps Per day") ##histogram
 ```
 
@@ -43,7 +43,9 @@ median(sumStepsData$steps, na.rm = TRUE)
 sumIntervalSteps <- group_by(stepsData, interval)
 sumIntervalDF <- as.data.frame(summarise(sumIntervalSteps, meanSteps = mean(steps, na.rm = TRUE)))
   ## make a df that has average steps per interval 
+```
 
+```{r, cache=TRUE}
 plot(sumIntervalDF$interval, sumIntervalDF$meanSteps, type="l", ylab = "Average Steps", xlab="Interval")
   ## time series plot 
 ```
@@ -106,7 +108,7 @@ imputedData <- select(imputedData, date:meanSteps)
 
 New Steps Histogram 
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, cache=TRUE}
 imputedGroupBy<- group_by(imputedData, date) ##group observations by data
 
 tableDataFrame <-(summarize(imputedGroupBy, steps = sum(meanSteps)))
@@ -155,7 +157,7 @@ imputedData$weekdayType <- as.factor(imputedData$weekdayType)
 
 Make a panel plot containing a time series plot (i.e. 𝚝𝚢𝚙𝚎 = "𝚕") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, cache=TRUE}
 library(lattice)
 
 ImputedAggregate <- aggregate(meanSteps ~ interval + weekdayType, imputedData, mean)
